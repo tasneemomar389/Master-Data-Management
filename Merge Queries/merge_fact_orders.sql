@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE merge_fact_orders()
+CREATE OR REPLACE PROCEDURE stored_procedure.merge_fact_orders()
 BEGIN
   MERGE star_schema.fact_orders AS fo
   USING (
