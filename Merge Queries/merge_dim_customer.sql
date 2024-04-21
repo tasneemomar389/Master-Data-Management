@@ -1,5 +1,5 @@
 
-CREATE OR REPLACE PROCEDURE merge_dim_customer()
+CREATE OR REPLACE PROCEDURE stored_procedure.merge_dim_customer()
 BEGIN
   MERGE `star_schema.dim_customer` AS dc
   USING ( SELECT DISTINCT Customer_ID,Customer_Name, Segment, CURRENT_TIMESTAMP() AS Created_Date, CURRENT_TIMESTAMP() AS Last_Updated_Date
