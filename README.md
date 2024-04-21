@@ -20,14 +20,12 @@ Steps
 
 4. **Run Data Loading Script:**
    - Execute the 'orderpipeline.py' script to load data from Google Storage into BigQuery tables. Make sure to configure the script with the correct bucket name, project, and table details.
+   - This can be also via Google Function using the Same script https://us-east1-graphic-abbey-356908.cloudfunctions.net/load_orders
    Example command to run the script
    python3 orderpipeline.py
 
-5. **Create Schema (Stored Procedure):**
-   - Create a schema named 'stored_procedure' under the BigQuery project where stored procedures will be stored. This schema will hold the scripts for merging data and maintaining data consistency.
-
-6. **Run Merge Scripts:**
-   - Execute the merge scripts ('merge_dim_customer', 'merge_dim_product', 'merge_dim_address', 'merge_fact_orders') to perform data merging operations. These scripts handle tasks such as updating dimensions and inserting/updating facts in the data warehouse using Incremental load(Merge)
+5. **Run Merge Scripts:**
+   - Create Schema (Stored Procedure) under the BigQuery project where stored procedures will be stored Execute the merge scripts ('merge_dim_customer', 'merge_dim_product', 'merge_dim_address', 'merge_fact_orders') to perform data merging operations. These scripts handle tasks such as updating dimensions and inserting/updating facts in the data warehouse using Incremental load(Merge)
 
 7. **Call Stored Procedures:**
    - Call the stored procedures from the 'stored_procedure' schema to trigger the merge operations. Use SQL `CALL` statements to execute the procedures and update the data in the data warehouse.
@@ -44,10 +42,12 @@ Steps
 
 9. **Generate Reports:**
    - Utilize Google Data Studio or other reporting tools to connect to the BigQuery tables and generate reports for business analysis and decision-making.
+     https://lookerstudio.google.com/reporting/2b37a713-0d9d-4a4b-9f52-0090231aa1c6
 
 10. **Testing and Monitoring:**
     - Perform thorough testing of the entire MDM process to ensure data accuracy and consistency.
     - Set up monitoring and alerting mechanisms to detect and address any issues that may arise during data processing.
+    - I've added a Test script as Sample "Tests.sql"
 
 ## Additional Notes
 
