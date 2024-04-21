@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE merge_dim_address()
+CREATE OR REPLACE PROCEDURE stored_procedure.merge_dim_address()
 BEGIN
   MERGE INTO `star_schema.dim_address` AS da
   USING ( SELECT DISTINCT a.Country, a.City, a.State, a.Postal_Code, a.Region, CURRENT_TIMESTAMP() AS Created_Date, CURRENT_TIMESTAMP() AS Last_Updated_Date
