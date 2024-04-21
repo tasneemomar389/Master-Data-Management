@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE merge_dim_product()
+CREATE OR REPLACE PROCEDURE stored_procedure.merge_dim_product()
 BEGIN MERGE `star_schema.dim_product` AS dp
   USING ( WITH cte_product AS
                               ( SELECT DISTINCT Product_ID, Product_Name, Category, Sub_Category
