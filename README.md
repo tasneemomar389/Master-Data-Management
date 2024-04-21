@@ -12,7 +12,7 @@ Steps
 
 3. **Install Required Tools:**
    - Install necessary tools like `gcloud` for managing GCP resources and Python packages (`fsspec`, `gcsfs`) for interacting with Google Storage.
-   # Example commands for installation
+   Example commands for installation
    install gcloud
    pip3 install fsspec
    pip3 install gcsfs
@@ -20,7 +20,7 @@ Steps
 
 4. **Run Data Loading Script:**
    - Execute the 'orderpipeline.py' script to load data from Google Storage into BigQuery tables. Make sure to configure the script with the correct bucket name, project, and table details.
-   # Example command to run the script
+   Example command to run the script
    python3 orderpipeline.py
 
 5. **Create Schema (Stored Procedure):**
