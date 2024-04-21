@@ -1,0 +1,5 @@
+{
+"bucket_name":"tasneem_orders",
+"client_bq":"graphic-abbey-356908",
+"load_table":"orders.order_details"
+}
