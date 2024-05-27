@@ -23,8 +23,8 @@ columns= df_1.columns
 df_1.columns= columns.str.replace(" ","_",regex=True)
 df_1.columns= df_1.columns.str.replace("-","_",regex=True)
 df_1["Row_ID"] = pd.to_numeric(df_1["Row_ID"])
-df_1["Order_Date"] = pd.to_datetime(df_1["Order_Date"],format="%d-%m-%Y" , errors='coerce') 
-df_1["Ship_Date"] = pd.to_datetime(df_1["Ship_Date"],format="%d-%m-%Y" , errors='coerce') 
+# df_1["Order_Date"] = pd.to_datetime(df_1["Order_Date"],format="%d-%m-%Y" , errors='coerce') 
+# df_1["Ship_Date"] = pd.to_datetime(df_1["Ship_Date"],format="%d-%m-%Y" , errors='coerce') 
 df_1["Profit"] = pd.to_numeric(df_1["Profit"])
 df_1["Row_ID"] = pd.to_numeric(df_1["Row_ID"])
 df_1["Order_ID"] = df_1["Order_ID"].astype("string")
@@ -39,5 +39,22 @@ df_1["Ship_Mode"] = df_1["Ship_Mode"].astype("string")
 df_1["Product_Name"] = df_1["Product_Name"].astype("string")
 df_1["Sub_Category"] = df_1["Sub_Category"].astype("string")
 df_1["Category"] = df_1["Category"].astype("string")
+
+
+# Convert Order_Date and Ship_Date to datetime, handling errors
+def correct_date_format(date_series, format_list):
+    for fmt in format_list:
+        try:
+            return pd.to_datetime(date_series, format=fmt, errors='raise')
+        except (ValueError, TypeError):
+            continue
+    return pd.to_datetime(date_series, errors='coerce')  # Fallback to coerce
+
+date_formats = ["%d-%m-%Y", "%Y-%m-%d", "%m/%d/%Y", "%d/%m/%Y"]
+df_1["Order_Date"] = correct_date_format(df_1["Order_Date"], date_formats)
+df_1["Ship_Date"] = correct_date_format(df_1["Ship_Date"], date_formats)
+
 client_bq = bigquery.Client(project=config["client_bq"])
 client_bq.load_table_from_dataframe(df_1,config["load_table"])
+
+
